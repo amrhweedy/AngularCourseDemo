@@ -1,0 +1,40 @@
+<div class="backdrop" (click)="onCancel()"></div>
+<dialog open>
+  <h2>Add Task</h2>
+  <form (ngSubmit)="onSubmit()">
+    <p>
+      <label for="title">Title</label>
+      <input type="text" id="title" name="title" [(ngModel)]="enteredTitle" />
+    </p>
+
+
+
+    <p>
+      <label for="summary">Summary</label>
+      <textarea  id="summary" rows="5" name="summary" [(ngModel)]="enteredSummary"></textarea>
+    </p>
+
+    <p>
+      <label for="due-date">Due Date</label>
+      <input type="date" id="due-date" name="due-date" [(ngModel)]="enteredDate" />
+    </p>
+
+    <p class="actions">
+      <button type="button" (click)="onCancel()">Cancel</button>
+      <button type="submit">Create</button>
+    </p>
+  </form>
+</dialog>
+
+
+
+
+<!-- if you have a submit button in a form and that button is pressed it will automatically submit the form and the browser
+ will try to send a request with that data form to the server that served the website , now that is a problem here
+ so we want to prevent this browser defult behavior we dont need to send a request , we need to handle the submission in javascipt (client side)
+ when we import the FormsModule the angular will give us an even (ngSubmit) this event will fire when we submit the form data
+ and we will listen on this event to take the form data
+
+ [(ngModel)] => is used in case of 2 way binding, it is used with the form
+
+ -->

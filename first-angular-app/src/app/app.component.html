@@ -1,0 +1,61 @@
+
+<!-- @for and @if is used in the version 17 so @for and @if are a simple more than *ngfor and *ngif  -->
+<app-header />
+<main>
+  <ul id="users">
+    @for (user of users; track user.id) {
+      <li>
+        <app-user
+           [user]="user"
+          (select)="onSelectedUser($event)"
+          [selected]="user.id===selectedUserId"
+         />
+      </li>
+    }
+  </ul>
+  @if (selectedUser) {
+  <app-tasks [userId]="selectedUser.id"  [name]="selectedUser.name" />
+  } @else {
+    <p>select a user</p>
+  }
+</main>
+
+
+
+<!-- the following code is used *ngfor and *ngif and we must import them in the app.component.ts because they are directives -->
+<!-- <app-header />
+<main>
+  <ul id="users">
+
+      <li *ngFor="let user of users">
+        <app-user
+           [user]="user"
+          (select)="onSelectedUser($event)"
+        />
+      </li>
+
+  </ul>
+
+   <app-tasks *ngIf="selectedUser; else fallback" [name]="selectedUser.name"/>
+   <ng-template #fallback>  // we use <ng-template> is we we need to make else
+    <p id ="fallback"> select a user</p>
+   </ng-template>
+
+</main>
+ -->
+
+
+
+
+<!-- notes -->
+<!-- 1 - the angular doesnot scan automatically the files and the folders to know the component
+  so when in the index.html we write app-root and the in the main.ts we explicity tells the angular to register
+  the app component
+
+  2- we render only the app-comp and inside it we render the rest of components so in the app-comp
+  we render the header comp but we need to register it insdie the app-component to tell the angular
+  that  <app-header></app-header> is a comp
+ -->
+
+ <!-- (select)="onSelectedUser($event)" => here we listen on the select event when it emits a value -->
+
